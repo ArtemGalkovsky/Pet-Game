@@ -1,3 +1,4 @@
+const canvas = document.querySelector(".canvas")
 const c = canvas.getContext("2d")
 
 const w = canvas.width = canvas.offsetWidth
@@ -6,8 +7,9 @@ const h = canvas.height = canvas.offsetHeight
 function createPet (type) {
 
 	c.lineWidth = 3
+
 	c.beginPath()
-	c.fillStyle = "#5cabff"//"light blue"
+	c.fillStyle = "#5cabff"
 	c.strokeStyle = "#5cabff"
 	c.arc(w / 2, h / 2, 250, 0, Math.PI * 2, false)
 	c.fill()
@@ -62,23 +64,13 @@ function createPet (type) {
 
 	if (type === "sad") {
 		createEyes("normal")
-		// c.fillStyle = "#000000"
-		// c.arc(w / 3, h / 2.3, 20, 0, Math.PI * 2, false)
-		// c.arc(w - w / 3, h / 2.3, 20, 0, Math.PI * 2, false)
-		// c.fill()
-
+		
 		c.beginPath()
 
 		c.ellipse(w / 2, h / 1.4, 150, 70, 0, -20 * Math.PI / 180, 200 * Math.PI / 180, true)
 		c.stroke()
 	} else if (type === "normal") {
 		createEyes("normal")
-		// c.fillStyle = "#000000"
-		// c.arc(w / 3, h / 2.3, 20, 0, Math.PI * 2, false)
-		// c.arc(w - w / 3, h / 2.3, 20, 0, Math.PI * 2, false)
-		// c.fill()
-
-		// c.beginPath()
 
 		c.ellipse(w / 2, h / 1.7, 150, 70, 0, 20 * Math.PI / 180, 160 * Math.PI / 180, false)
 		c.stroke()
@@ -94,7 +86,7 @@ function createPet (type) {
 		c.arc(w / 4, h / 1.8, 50, 0, Math.PI * 2, false)
 		c.arc(w- w / 4, h / 1.8, 50, 0, Math.PI * 2, false)
 		c.fill()
-		//c.fill()
+
 	} else if (type === "cheeky") {
 		createEyes("cheeky")
 
@@ -133,52 +125,29 @@ function createEyes (type, y = h / 2.3) {
 	}
 }
 
-//createPet("sad")//createPet("cheeky")//("normal")//("happy")//("sad")
-
 var petStateTimeout =  setTimeout(createPet("sad"), 1)
-//petTimeout(1)
-//var petStateTimeout
 
 console.log(w, h)
 console.dir(canvas, window)
 
 function petTimeout (petType, time = 5000) {
-	// console.log("petTimeout")
-	//petStateTimeout.clearTimeout()
 	createPet(petType)
 	clearTimeout(petStateTimeout)
-	petStateTimeout = setTimeout(() => {createPet("sad")}, time)//5000)//() => {
-		//createPet("sad")
-	//}, 5000)
+	petStateTimeout = setTimeout(() => {createPet("sad")}, time)
 }
 
-canvas.addEventListener("click", () => {//() => {
+canvas.addEventListener("click", () => {
 	petTimeout("normal")})
-	// createPet("normal")
-	// // console.log("click")
-	// //petStateTimeout.clearTimeout()
-	// petTimeout()
-//})
-canvas.addEventListener("dblclick", () => {// () => {
+	
+canvas.addEventListener("dblclick", () => {
 	petTimeout("cheeky")})
-	//console.log("dbclick")
-	//createPet("cheeky")//("cheeky")
-	// console.log("dbclick")
-	// petStateTimeout.clearTimeout()
-	//petTimeout()
-//})
 
 var mousemoveCounter = 0
 
-canvas.addEventListener("mousemove", () => { //mosemove
+canvas.addEventListener("mousemove", () => {
 	mousemoveCounter += 1
 	if (mousemoveCounter === 100) {
-		petTimeout("happy")//("cheeky")
+		petTimeout("happy")
 		mousemoveCounter = 0
 	}
-
-	//petStateTimeout.clearTimeout()
-	//petTimeout()
-
-	//createPet("happy")//("cheeky")
 })
